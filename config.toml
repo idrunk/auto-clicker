@@ -1,0 +1,7 @@
+speed = [0.7, 1.2]
+offset = 4
+
+[shortcut]
+pause = "ctrl+shift+alt+q"
+swicth = "ctrl+shift+alt+w"
+exit = "ctrl+shift+alt+e"
