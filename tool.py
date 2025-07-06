@@ -1,7 +1,7 @@
 import random
 import threading
 from time import sleep
-from plyer import notification
+from winotify import Notification
 from pynput import mouse
 import keyboard
 import pyautogui
@@ -14,11 +14,11 @@ def switch():
     global pos
     with lock:
         if pos is None:
-            notification.notify( title='', message='左击一次开始连点', timeout=2 )
+            Notification( app_id="Auto Clicker", title='', msg='左击一次开始连点', duration="short" ).show()
             listen_left()
         elif pos != 0:
             pos = None
-            notification.notify( title='', message='已停止连点', timeout=2 )
+            Notification( app_id="Auto Clicker", title='', msg='已停止连点', duration="short" ).show()
 
 listener = None
 def listen_left():
@@ -34,7 +34,7 @@ def on_click(x, y, button, pressed):
             pos = (x, y)
             listener.stop()
             listener = None
-            notification.notify( title='', message=f"正在连点 {pos}", timeout=2 )
+            Notification( app_id="Auto Clicker", title='', msg=f"正在连点 {pos}", duration="short" ).show()
 
 def click():
     global pos
@@ -60,9 +60,9 @@ def pause():
     global is_paused
     is_paused = not is_paused
     if is_paused:
-        notification.notify( title='', message='已暂停连点', timeout=2 )
+        Notification( app_id="Auto Clicker", title='', msg='已暂停连点', duration="short" ).show()
     else:
-        notification.notify( title='', message='已恢复连点', timeout=2 )
+        Notification( app_id="Auto Clicker", title='', msg='已恢复连点', duration="short" ).show()
 
 def quit():
     global keep_sig
